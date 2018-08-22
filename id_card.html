@@ -1,0 +1,343 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<!-- Google font -->
+<link
+	href='http://fonts.googleapis.com/css?family=Noto+Sans:300,400,700'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<!-- Css -->
+<link rel="stylesheet"
+	href="http://happ.hongik.ac.kr/hongik_security/resources/css/library/bootstrap.min.css">
+<link rel="stylesheet"
+	href="http://happ.hongik.ac.kr/hongik_security/resources/css/library/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://happ.hongik.ac.kr/hongik_security/resources/css/library/owl.carousel.css">
+<link rel="stylesheet"
+	href="http://happ.hongik.ac.kr/hongik_security/resources/css/md-font.css">
+<link rel="stylesheet"
+	href="http://happ.hongik.ac.kr/hongik_security/resources/css/style.css">
+
+<script type="text/javascript"
+	src="http://happ.hongik.ac.kr/hongik_security/resources/js/jquery-1.9.1.js"></script>
+<script type="text/javascript"
+	src="http://happ.hongik.ac.kr/hongik_security/resources/js/jquery-ui.min.js"></script>
+
+<title>신분증|홍익대학교</title>
+
+<script>
+	function goBack() {
+		var userAgent = navigator.userAgent.toLowerCase();
+
+		// 안드로이드
+		if (userAgent.search("android") > -1) {
+			window.android.goBack();
+			console.log("android");
+		}
+		// ios
+		else if ((userAgent.search("iphone") > -1)
+				|| (userAgent.search("ipod") > -1)
+				|| (userAgent.search("ipad") > -1)) {
+			window.location.href = "goBack://";
+			console.log("ios");
+		}
+		// 기타
+		else {
+			console.log("else");
+		}
+	}
+
+	function Logout() {
+		var resultCode = "0";
+		$.ajax({
+			type : 'post',
+			url : 'http://happ.hongik.ac.kr/hongik_security/service/logout.ajax',
+			dataType : "json",
+			success : function(res) {
+				if (res.status == 'success') {
+					console.log("success");
+					resultCode = "1";
+				} else {
+					resultCode = "0";
+					console.log('fail');
+				}
+			},
+			error : function(xhr, status, err) {
+				console.log("xhr : " + xhr);
+				console.log("status : " + status);
+				console.log("error: " + err);
+			}
+		}).done(
+				function(res) {
+					if (resultCode == "1") {
+						// 안드로이드
+						var userAgent = navigator.userAgent.toLowerCase();
+						if (userAgent.search("android") > -1) {
+							window.android.logOut();
+							console.log("android");
+						}
+						// ios
+						else if ((userAgent.search("iphone") > -1)
+								|| (userAgent.search("ipod") > -1)
+								|| (userAgent.search("ipad") > -1)) {
+							window.location.href = "logOut://";
+							console.log("ios");
+						}
+						// 기타
+						else {
+							window.android.Logout();
+							console.log("else");
+						}
+					} else {
+						console.log('error');
+					}
+				});
+	}
+	function goAlert2(msg) {
+		var userAgent = navigator.userAgent.toLowerCase();
+
+		// 안드로이드
+		if (userAgent.search("android") > -1) {
+			window.android.commonAlert(msg);
+			console.log("android");
+		}
+		// ios
+		else if ((userAgent.search("iphone") > -1)
+				|| (userAgent.search("ipod") > -1)
+				|| (userAgent.search("ipad") > -1)) {
+			var msgs = msg.replace(/ /g, '/');
+			window.location.href = "commonAlert://msg=" + msgs;
+			console.log("ios");
+		}
+		// 기타
+		else {
+			console.log("else");
+		}
+	}
+</script>
+</head>
+<body id="page-top">
+
+	<!-- PAGE WRAP -->
+	<div id="page-wrap">
+
+		<!-- PRELOADER -->
+		<div id="preloader">
+			<div class="pre-icon">
+				<div class="pre-item pre-item-1"></div>
+				<div class="pre-item pre-item-2"></div>
+				<div class="pre-item pre-item-3"></div>
+				<div class="pre-item pre-item-4"></div>
+			</div>
+		</div>
+		<!-- END / PRELOADER -->
+
+		
+
+		<!-- PROFILE -->
+
+		<section class="profile" style="padding-bottom:0;">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="id_card" style="padding: 25px; min-height: 22rem;">
+							<hr></hr>
+							<div class="changes-avatar">
+								<div class="img-acount">
+									<img id="capt" src=""
+										onError="this.src='http://happ.hongik.ac.kr/hongik_security/resources/images/idcard_default.png'"
+										alt=""
+										style="height: 100% !important; display: block; margin-left: auto; margin-right: auto;" />
+								</div>
+							</div>
+							<div class="id_card_content">
+								
+									<h3
+										style="line-height: 1; overflow: hidden; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"
+										class="md black margin-bottom-5">정대철</h3>
+									<p class="margin-bottom-5">공과대학</p>
+									<p class="margin-bottom-5">정보·컴퓨터공학부</p>
+									<p class="margin-bottom-30">B811179</p>
+								
+								
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 id_card_qr">
+						<div class="panel panel-primary" style="margin-bottom:5px;">
+							<div class="panel-heading" id="countdown"></div>
+							<!-- 
+				  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">시간초과 테스트 버튼</button>
+ -->
+							<div class="panel-body">
+								<img id="qr_code" class="center-block" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=0B811179120180822231457820daafd47503978385690072bdfdd3d" style="margin: 15px auto;" /> 
+									<span style="display: block; text-align: center; font-size: 12px;">QR코드 생성시간 :
+									
+									2018/08/22 23:14:57
+								</span>
+							</div>
+						</div>
+						
+						
+							<div style="text-align:center;font-size:12px;">신분증 사진변경은 학과사무실을 통해서만 가능합니다.</div>
+						
+						
+					</div>
+				</div>
+			</div>
+			
+				<input type="button" class="btn btn-block btn-lg btn-primary"
+					onclick="javascript:Logout();" style="margin-top: 20px;"
+					value="로그아웃">
+			
+		</section>
+
+
+		<!-- END / PROFILE -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal">×</button> -->
+						<h2 class="modal-title">재발행 필요</h2>
+					</div>
+					<div class="modal-body">
+						<p>유효시간이 초과되었습니다.</p>
+					</div>
+					<div class="modal-footer">
+						
+						<button type="button" class="btn btn-danger btn-lg"
+							data-dismiss="modal" onclick="javascript:retimer();">
+							QR CODE 재발행</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 단순alert -->
+	    <div class="modal fade" id="msgModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content" style="top:10rem;">
+				<div class="modal-body" style="padding:20px 15px; height:40rem;">
+		        	<p id="dialog_title" style="margin:0px; font-size:18px;">현재 버전은 12월 31일까지만 사용가능합니다.<br/>앱 업데이트 후 사용하시기 바랍니다.</p>
+				</div>
+				<div class="modal-footer" style="padding:10px; border:0px;">
+				  <button type="button" class="btn btn-lg" data-dismiss="modal" onclick="javascript:msg_dialog_close();" style="padding:5px 15px; font-size:15px;background:#fff;">확인</button>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<form name="dataForm" id="dataForm">
+		<input type="hidden" name="happ_id" value="B811179"> 
+		<input type="hidden" name="happ_ts" value="20180822231457"> 
+		<input type="hidden" name="happ_x" value="EDAD18DC03225A0746B93F3515827081B27E89EBA1F67581FDD29F3D8E4CEE03478EABF994E47D567538A732E2194AB8EB07D68D9E4DB49340C5576D5F5FFA5F">
+	</form>
+	<!-- END / PAGE WRAP -->
+
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/library/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/library/jquery.owl.carousel.js"></script>
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/library/jquery.appear.min.js"></script>
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/library/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/library/jquery.easing.min.js"></script>
+<script type="text/javascript" src="http://happ.hongik.ac.kr/hongik_security/resources/js/scripts.js"></script>
+<form method="POST" name="listform" style="margin:0;">
+	<input type="hidden" name="userId">
+	<input type="hidden" name="userType">
+	<input type="hidden" name="idcard">
+</form>
+<!-- 시간 초과시 재발행 화면 실행 스크립트 -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#capt').attr('src',"https://tistory1.daumcdn.net/tistory/1569792/attach/e0e15cc4bdc54b048d316fa81e66a824");
+		/* msg_dialog(); */
+	});
+	
+	//페이지 실행시 일정시간뒤에 재발행창 표시 함수 실행
+	$(function() {
+		/* 사용불가 문구추가시 삭제부분 */
+		setTimeout(timer_qr, 30000);
+	});
+	function retimer() {
+		listView('7QmMOK9o0P3+vIbhj1Q8IA==');
+	}
+	//재발행창 표시
+	function timer_qr() {
+		$('#myModal').modal({
+			backdrop : 'static',
+			keyboard : false
+		});
+		$('#myModal').modal('show');
+		$('#qr_code')
+				.attr('src',
+						"http://happ.hongik.ac.kr/hongik_security/resources/images/chart.png");
+	}
+
+	//타이머 나타내는 함수
+	/* Timer */
+	function countdown(elementId, seconds) {
+		var element, endTime, hours, mins, msLeft, time;
+
+		function updateTimer() {
+			msLeft = endTime - (+new Date);
+			if (msLeft < 0) {
+				console.log('done');
+			} else {
+				time = new Date(msLeft);
+				hours = time.getUTCHours();
+				mins = time.getUTCMinutes();
+				element.innerHTML = '남은 인증 시간 :'
+						+ (hours ? hours + ':' + ('0' + mins).slice(-2)
+								: mins) + ':'
+						+ ('0' + time.getUTCSeconds()).slice(-2);
+				setTimeout(updateTimer, time.getUTCMilliseconds());
+				// if you want this to work when you unfocus the tab and refocus or after you sleep your computer and come back, you need to bind updateTimer to a $(window).focus event^^
+			}
+		}
+
+		element = document.getElementById(elementId);
+		endTime = (+new Date) + 1000 * seconds;
+		updateTimer();
+	}
+	
+	/* 사용불가 문구추가시 삭제부분 */
+	countdown('countdown', 30); // second base
+	
+	function listView(id){
+		var url1 = '';
+		listform.target = '_self';
+		listform.action = window.location.href;
+		listform.userId.value = id;
+		listform.userType.value = '2';
+		
+		listform.idcard.value = 'idcard';
+		
+		listform.submit();
+	}
+	function androidBack(){
+		goBack();
+	}
+	function msg_dialog(){
+        $('#msgModal').modal({backdrop:'static', keyboard: false}) ;
+        $('#msgModal').modal('show');
+    }
+    
+    function msg_dialog_close(){
+    	$('#msgModal').modal('hide');
+    	setTimeout(timer_qr, 30000);
+    	countdown('countdown', 30); // second base
+	}
+</script>
+
+</body>
+</html>
